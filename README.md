@@ -3,14 +3,14 @@
 # 요약
 네이버 영화 -> 영화랭킹 -> 디렉토리 -> 형식에서 전체영화를 긁어옴
 
-#변경 사항
+# 변경 사항
 male,female rating => double로 바꿈
 production_point~ost_point => double로 바꿈
 
-#질문or추가할 것
+# 질문or추가할 것
 네티즌평점과 관람객평점 구분 어떻게 할지. (타입을 줘서?)
 
-#크롤링 결과 
+# 크롤링 결과 
 mlink=https://movie.naver.com//movie/bi/mi/point.nhn?code=73430
 movieno=73430
 evaluation_point=6.00
