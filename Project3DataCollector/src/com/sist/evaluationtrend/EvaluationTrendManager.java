@@ -16,7 +16,7 @@ public class EvaluationTrendManager {
 			for (int k = 11; k <= 18; k++) {
 				String mainlink="https://movie.naver.com/movie/sdb/browsing/bmovie.nhn?form="+k+"&page=";
 				System.out.println("mainlink="+mainlink);
-				for (int i = 1; i <= 2800; i++) {
+				for (int i = 1;; i++) {
 					System.out.println("i : " + i);
 					Document doc = Jsoup
 							.connect(mainlink + i )
@@ -24,7 +24,6 @@ public class EvaluationTrendManager {
 					System.out.println("mainlink+i="+mainlink+i);
 					Elements link = doc.select("ul.directory_list > li > a");
 					System.out.println(link);
-
 					// link=movie/bi/mi/basic.nhn?code=24239
 
 					for (int j = 0; j < link.size(); j++) {
@@ -39,12 +38,13 @@ public class EvaluationTrendManager {
 							mLink = mLink.replace("basic", "point");
 							System.out.println("mlink=" + mLink);
 							Document doc2 = Jsoup.connect(mLink).get();
+							System.out.println("doc2="+doc2);
 							String str = elem.attr("href");
 							String movieno = str.substring(str.lastIndexOf("=") + 1);
 							int movie_id = Integer.parseInt(movieno);
-
-							System.out.println("movieno=" + movieno);
-
+							System.out.println("movie_id=" + movie_id);
+							
+							//EvaluationTrend 수집 시작
 							Element evaluation_point = doc2.select("div#netizen_point_tab_inner").get(0);
 							System.out.println("evaluation_point=" + evaluation_point.text());
 
@@ -96,16 +96,7 @@ public class EvaluationTrendManager {
 							String op = ost_point.text();
 							op = op.replaceAll("%", "");
 							System.out.println("ost_point=" + op);
-
 							System.out.println("==============================================");
-							/*
-							 * private int movie_id; private double evaluation_point; private int
-							 * people_count; private double male_rating; private double female_rating;
-							 * private double age_10; private double age_20; private double age_30; private
-							 * double age_40; private double age_50; private int production_point; private
-							 * int acting_point; private int story_point; private int visual_point; private
-							 * int ost_point;
-							 */
 
 							EvaluationTrendVO vo = new EvaluationTrendVO();
 							vo.setMovie_id(movie_id);
@@ -151,9 +142,62 @@ public class EvaluationTrendManager {
 
 							int ostp = Integer.parseInt(op);
 							vo.setOst_point(ostp);
-
-							// dao.travelInsert(vo);
-
+							//EvaluationTrend 수집 끝
+							 //dao.EvaluationTrendInsert(vo);
+							System.out.println("dao="+dao);
+							//Watchingtrend 수집 시작
+							/*
+							 * Element male_rating = doc2.selectFirst("div.donut_graph strong.graph_point");
+							 * System.out.println("male_rating=" + male_rating.text());
+							 * 
+							 * Element female_rating =
+							 * doc2.selectFirst("div.grp_female strong.graph_point");
+							 * System.out.println("female_rating=" + female_rating.text());
+							 * 
+							 * Element age_10 = doc2.select("div.graph_box ").get(1);
+							 * String age1 = age_10.text();
+								age10 = age1.replaceAll("%", "");
+								System.out.println("age_10=" + age10);
+							 * 
+							 * Element age_20 = doc2.select("div.graph_box ").get(2);
+							 * String age2 = age_20.text();
+								age20 = age2.replaceAll("%", "");
+								System.out.println("age_10=" + age20);
+								
+							 * Element age_30 = doc2.select("div.graph_box ").get(3);
+							 * String age3 = age_30.text();
+								age30 = age3.replaceAll("%", "");
+								System.out.println("age_30=" + age30);
+								
+							 * Element age_40 = doc2.select("div.graph_box ").get(4);
+							 * String age4 = age_40.text();
+								age40 = age4.replaceAll("%", "");
+								System.out.println("age_40=" + age40);
+								
+							 * Element age_50 = doc2.select("div.graph_box ").get(5);
+							 * String age5 = age_50.text();
+								age50 = age5.replaceAll("%", "");
+								System.out.println("age_50=" + age50);
+							 * 
+							 * WatchingTrendVO vo = new WatchingTrendVO(); vo.setMovie_id(movie_id);
+							 * System.out.println("vo.movie_id=" + vo.getMovie_id());
+							 * 
+							 * double mr = Double.parseDouble(male_rating.text()); vo.setMale_rating(mr);
+							 * 
+							 * double fr = Double.parseDouble(female_rating.text());
+							 * vo.setFemale_rating(fr);
+							 * 
+							 * double age10 = Double.parseDouble(age_10.text()); vo.setAge_10(age10);
+							 * 
+							 * double age20 = Double.parseDouble(age_20.text()); vo.setAge_20(age20);
+							 * 
+							 * double age30 = Double.parseDouble(age_30.text()); vo.setAge_30(age30);
+							 * 
+							 * double age40 = Double.parseDouble(age_40.text()); vo.setAge_40(age40);
+							 * 
+							 * double age50 = Double.parseDouble(age_50.text()); vo.setAge_50(age50);
+							 */
+							//Watchingtrend 수집 끝
 						} catch (Exception ex) {
 							ex.printStackTrace();
 						}
