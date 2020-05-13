@@ -16,7 +16,7 @@ public class EvaluationTrendManager {
 		try {
 
 			EvaluationTrendDAO dao = new EvaluationTrendDAO();
-			for (int k = 11; k <= 18; k++) {
+			for (int k = 16; k <= 16; k++) {
 				
 				isSameMovieId = false;
 				
@@ -46,9 +46,9 @@ public class EvaluationTrendManager {
 							String mLink = "https://movie.naver.com/" + elem.attr("href");
 
 							mLink = mLink.replace("basic", "point");
-							////system.out.println("mlink=" + mLink);
+							System.out.println("mlink=" + mLink);
 							Document doc2 = Jsoup.connect(mLink).get();
-							System.out.println("doc2="+doc2);
+							//System.out.println("doc2="+doc2);
 							String str = elem.attr("href");
 							String movieno = str.substring(str.lastIndexOf("=") + 1);
 							int movie_id = Integer.parseInt(movieno);
@@ -66,7 +66,7 @@ public class EvaluationTrendManager {
 							////system.out.println("movieno=" + movieno);
 
 							Element evaluation_point = doc2.select("div#netizen_point_tab_inner").get(0);
-							////system.out.println("evaluation_point=" + evaluation_point.text());
+							System.out.println("evaluation_point=" + evaluation_point.text());
 
 							Element people_count = doc2.selectFirst("span.user_count em");
 							////system.out.println("people_count=" + people_count.text());
@@ -163,62 +163,11 @@ public class EvaluationTrendManager {
 
 							int ostp = Integer.parseInt(op);
 							vo.setOst_point(ostp);
+							
+							
 							//EvaluationTrend 수집 끝
-							 //dao.EvaluationTrendInsert(vo);
 							System.out.println("dao="+dao);
-							//Watchingtrend 수집 시작
-							/*
-							 * Element male_rating = doc2.selectFirst("div.donut_graph strong.graph_point");
-							 * System.out.println("male_rating=" + male_rating.text());
-							 * 
-							 * Element female_rating =
-							 * doc2.selectFirst("div.grp_female strong.graph_point");
-							 * System.out.println("female_rating=" + female_rating.text());
-							 * 
-							 * Element age_10 = doc2.select("div.graph_box ").get(1);
-							 * String age1 = age_10.text();
-								age10 = age1.replaceAll("%", "");
-								System.out.println("age_10=" + age10);
-							 * 
-							 * Element age_20 = doc2.select("div.graph_box ").get(2);
-							 * String age2 = age_20.text();
-								age20 = age2.replaceAll("%", "");
-								System.out.println("age_10=" + age20);
-								
-							 * Element age_30 = doc2.select("div.graph_box ").get(3);
-							 * String age3 = age_30.text();
-								age30 = age3.replaceAll("%", "");
-								System.out.println("age_30=" + age30);
-								
-							 * Element age_40 = doc2.select("div.graph_box ").get(4);
-							 * String age4 = age_40.text();
-								age40 = age4.replaceAll("%", "");
-								System.out.println("age_40=" + age40);
-								
-							 * Element age_50 = doc2.select("div.graph_box ").get(5);
-							 * String age5 = age_50.text();
-								age50 = age5.replaceAll("%", "");
-								System.out.println("age_50=" + age50);
-							 * 
-							 * WatchingTrendVO vo = new WatchingTrendVO(); vo.setMovie_id(movie_id);
-							 * System.out.println("vo.movie_id=" + vo.getMovie_id());
-							 * 
-							 * double mr = Double.parseDouble(male_rating.text()); vo.setMale_rating(mr);
-							 * 
-							 * double fr = Double.parseDouble(female_rating.text());
-							 * vo.setFemale_rating(fr);
-							 * 
-							 * double age10 = Double.parseDouble(age_10.text()); vo.setAge_10(age10);
-							 * 
-							 * double age20 = Double.parseDouble(age_20.text()); vo.setAge_20(age20);
-							 * 
-							 * double age30 = Double.parseDouble(age_30.text()); vo.setAge_30(age30);
-							 * 
-							 * double age40 = Double.parseDouble(age_40.text()); vo.setAge_40(age40);
-							 * 
-							 * double age50 = Double.parseDouble(age_50.text()); vo.setAge_50(age50);
-							 */
-							//Watchingtrend 수집 끝
+							
 							list.add(vo);
 							 //dao.EvaluationTrendInsert(vo);
 
