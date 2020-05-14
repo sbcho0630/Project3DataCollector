@@ -1,4 +1,4 @@
-package com.sist.evaluationtrend;
+package com.sist.dao;
 
 public class WatchingTrendVO {
  private int movie_id;

@@ -1,4 +1,4 @@
-package com.sist.evaluationtrend;
+package com.sist.manager;
 
 import java.util.*;
 import java.lang.*;
@@ -7,15 +7,18 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class EvaluationTrendManager {
-	public List<EvaluationTrendVO> EvaluationData() {
-		List<EvaluationTrendVO> list = new ArrayList<EvaluationTrendVO>();
+import com.sist.dao.NetizenEvaluationTrendDAO;
+import com.sist.dao.NetizenEvaluationTrendVO;
+
+public class NetizenEvaluationTrendManager {
+	public List<NetizenEvaluationTrendVO> EvaluationData() {
+		List<NetizenEvaluationTrendVO> list = new ArrayList<NetizenEvaluationTrendVO>();
 		int count = 0;
 		int preMovieId = -1;
 		boolean isSameMovieId = false;
 		try {
 
-			EvaluationTrendDAO dao = new EvaluationTrendDAO();
+			NetizenEvaluationTrendDAO dao = new NetizenEvaluationTrendDAO();
 			for (int k = 16; k <= 16; k++) {
 				
 				isSameMovieId = false;
@@ -119,7 +122,7 @@ public class EvaluationTrendManager {
 
 							//system.out.println("==============================================");
 
-							EvaluationTrendVO vo = new EvaluationTrendVO();
+							NetizenEvaluationTrendVO vo = new NetizenEvaluationTrendVO();
 							vo.setMovie_id(movie_id);
 							//system.out.println("vo.movie_id=" + vo.getMovie_id());
 							double ep = Double.parseDouble(evaluation_point.text());
@@ -189,8 +192,8 @@ public class EvaluationTrendManager {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//system.out.println("hello");
-		EvaluationTrendManager m = new EvaluationTrendManager();
-		List<EvaluationTrendVO> list = m.EvaluationData();
+		NetizenEvaluationTrendManager m = new NetizenEvaluationTrendManager();
+		List<NetizenEvaluationTrendVO> list = m.EvaluationData();
 		System.out.println("actual count : " + list.size());
 	}
 

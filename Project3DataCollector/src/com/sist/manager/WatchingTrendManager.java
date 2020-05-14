@@ -1,4 +1,4 @@
-package com.sist.evaluationtrend;
+package com.sist.manager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.sist.dao.WatchingTrendDAO;
+import com.sist.dao.WatchingTrendVO;
 
 public class WatchingTrendManager {
 	public List<WatchingTrendVO> WatchingData() {
@@ -45,9 +48,9 @@ public class WatchingTrendManager {
 							String mLink = "https://movie.naver.com/" + elem.attr("href");
 							// String mLink = "https://movie.naver.com/movie/bi/mi/basic.nhn?code=190721";
 							mLink = mLink.replace("basic", "point");
-							System.out.println("mlink=" + mLink);
+							//System.out.println("mlink=" + mLink);
 							Document doc2 = Jsoup.connect(mLink).get();
-							// System.out.println("doc2=" + doc2);
+							 //System.out.println("doc2=" + doc2);
 							String str = elem.attr("href");
 							String movieno = str.substring(str.lastIndexOf("=") + 1);
 							int movie_id = Integer.parseInt(movieno);
@@ -91,14 +94,16 @@ public class WatchingTrendManager {
 
 							
 							String doc1 = doc2.toString();
-							int sper = doc1.indexOf("sPer") + 7;
-							String atemp = doc1.substring(sper, sper + 3);
+							int sper = doc1.indexOf("sPer") + 5;
+							String atemp = doc1.substring(sper, sper + 10);
+							atemp=atemp.substring(atemp.indexOf(":")+1,atemp.indexOf("}"));
 							String a = atemp.trim();
 							double male_rating = Double.parseDouble(a);
 							System.out.println("malerating=" + male_rating);
 
-							int sper2 = doc1.indexOf("sPer", sper) + 6;
-							String btemp = doc1.substring(sper2, sper2 + 3);
+							int sper2 = doc1.indexOf("sPer", sper) + 5;
+							String btemp = doc1.substring(sper2, sper2 + 10);
+							btemp=btemp.substring(btemp.indexOf(":")+1,btemp.indexOf("}"));
 							System.out.println("btemp="+btemp);
 							String b=btemp.trim();
 							double female_rating = Double.parseDouble(b);

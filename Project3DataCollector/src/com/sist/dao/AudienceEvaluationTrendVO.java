@@ -1,6 +1,7 @@
-package com.sist.evaluationtrend;
-public class EvaluationTrendVO {
-	  private int   movie_id;   
+package com.sist.dao;
+
+public class AudienceEvaluationTrendVO {
+	 private int   movie_id;   
 	  private double 	evaluation_point; 
 	  private int   people_count;				
 	  private double   male_rating;
@@ -15,7 +16,6 @@ public class EvaluationTrendVO {
 	  private int   story_point;
 	  private int   visual_point;
 	  private int   ost_point;
-	  
 	public int getMovie_id() {
 		return movie_id;
 	}
@@ -106,11 +106,7 @@ public class EvaluationTrendVO {
 	public void setOst_point(int ost_point) {
 		this.ost_point = ost_point;
 	}
-	
-
-	
-	
-	
-	
+	  
+	  
+	  
 }
-
