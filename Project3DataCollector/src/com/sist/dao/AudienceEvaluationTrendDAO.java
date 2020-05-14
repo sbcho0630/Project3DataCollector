@@ -1,14 +1,15 @@
 package com.sist.dao;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
-public class NetizenEvaluationTrendDAO {
+public class AudienceEvaluationTrendDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
 
-	public NetizenEvaluationTrendDAO() {
+	public AudienceEvaluationTrendDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (Exception ex) {
@@ -37,7 +38,7 @@ public class NetizenEvaluationTrendDAO {
 	public void EvaluationTrendInsert(NetizenEvaluationTrendVO vo) {
 		try {
 			getConnection();
-			String sql = "INSERT INTO Netizen_Evaluation_Trend (movie_id,evaluation_point,people_count,male_rating,female_rating,age_10,age_20,age_30,age_40,age_50,production_point,acting_point,story_point,visual_point,ost_point) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO Audience_Evaluation_Trend (movie_id,evaluation_point,people_count,male_rating,female_rating,age_10,age_20,age_30,age_40,age_50,production_point,acting_point,story_point,visual_point,ost_point) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, vo.getMovie_id());
 			ps.setDouble(2, vo.getEvaluation_point());
@@ -63,5 +64,4 @@ public class NetizenEvaluationTrendDAO {
 		}
 
 	}
-
 }

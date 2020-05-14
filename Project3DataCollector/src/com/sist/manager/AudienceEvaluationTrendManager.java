@@ -1,24 +1,27 @@
 package com.sist.manager;
 
-import java.util.*;
-import java.lang.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sist.dao.AudienceEvaluationTrendDAO;
+import com.sist.dao.AudienceEvaluationTrendVO;
 import com.sist.dao.NetizenEvaluationTrendDAO;
 import com.sist.dao.NetizenEvaluationTrendVO;
 
-public class NetizenEvaluationTrendManager {
-	public List<NetizenEvaluationTrendVO> EvaluationData() {
-		List<NetizenEvaluationTrendVO> list = new ArrayList<NetizenEvaluationTrendVO>();
+public class AudienceEvaluationTrendManager {
+	public List<AudienceEvaluationTrendVO> EvaluationData() {
+		List<AudienceEvaluationTrendVO> list = new ArrayList<AudienceEvaluationTrendVO>();
 		int count = 0;
 		int preMovieId = -1;
 		boolean isSameMovieId = false;
 		try {
 
-			NetizenEvaluationTrendDAO dao = new NetizenEvaluationTrendDAO();
+			AudienceEvaluationTrendDAO dao = new AudienceEvaluationTrendDAO();
 			for (int k = 16; k <= 16; k++) {
 				
 				isSameMovieId = false;
@@ -68,63 +71,63 @@ public class NetizenEvaluationTrendManager {
 							
 							////system.out.println("movieno=" + movieno);
 
-							Element evaluation_point = doc2.select("div#netizen_point_tab_inner").get(0);
+							Element evaluation_point = doc2.select("div#actual_point_tab_inner div.star_score").get(0);
 							System.out.println("evaluation_point=" + evaluation_point.text());
 
-							Element people_count = doc2.selectFirst("span.user_count em");
-							////system.out.println("people_count=" + people_count.text());
+							Element people_count = doc2.select("span.user_count em").get(1);
+							System.out.println("people_count=" + people_count.text());
 
-							Element male_rating = doc2.selectFirst("div.grp_male strong.graph_point");
-							////system.out.println("male_rating=" + male_rating.text());
+							Element male_rating = doc2.select("div.grp_male strong.graph_point").get(1);
+							System.out.println("male_rating=" + male_rating.text());
 
-							Element female_rating = doc2.selectFirst("div.grp_female strong.graph_point");
-							////system.out.println("female_rating=" + female_rating.text());
+							Element female_rating = doc2.select("div.grp_female strong.graph_point").get(1);
+							System.out.println("female_rating=" + female_rating.text());
 
-							Element age_10 = doc2.select("div.grp_age strong.graph_point").get(0);
-							//system.out.println("age_10=" + age_10.text());
+							Element age_10 = doc2.select("div.grp_age strong.graph_point").get(5);
+							System.out.println("age_10=" + age_10.text());
 
-							Element age_20 = doc2.select("div.grp_age strong.graph_point").get(1);
-							//system.out.println("age_20=" + age_20.text());
+							Element age_20 = doc2.select("div.grp_age strong.graph_point").get(6);
+							System.out.println("age_20=" + age_20.text());
 
-							Element age_30 = doc2.select("div.grp_age strong.graph_point").get(2);
-							//system.out.println("age_30=" + age_30.text());
+							Element age_30 = doc2.select("div.grp_age strong.graph_point").get(7);
+							System.out.println("age_30=" + age_30.text());
 
-							Element age_40 = doc2.select("div.grp_age strong.graph_point").get(3);
-							//system.out.println("age_40=" + age_40.text());
+							Element age_40 = doc2.select("div.grp_age strong.graph_point").get(8);
+							System.out.println("age_40=" + age_40.text());
 
-							Element age_50 = doc2.select("div.grp_age strong.graph_point").get(4);
-							//system.out.println("age_50=" + age_50.text());
+							Element age_50 = doc2.select("div.grp_age strong.graph_point").get(9);
+							System.out.println("age_50=" + age_50.text());
 
-							Element production_point = doc2.select("li.point01 span.grp_score").get(0);
+							Element production_point = doc2.select("li.point01 span.grp_score").get(1);
 							String pp = production_point.text();
 							pp = pp.replaceAll("%", "");
-							//system.out.println("production_point=" + pp);
+							System.out.println("production_point=" + pp);
 
-							Element acting_point = doc2.select("li.point02 span.grp_score").get(0);
+							Element acting_point = doc2.select("li.point02 span.grp_score").get(1);
 							String ap = acting_point.text();
 							ap = ap.replaceAll("%", "");
-							//system.out.println("acting_point=" + ap);
+							System.out.println("acting_point=" + ap);
 
-							Element story_point = doc2.select("li.point03 span.grp_score").get(0);
+							Element story_point = doc2.select("li.point03 span.grp_score").get(1);
 							String sp = story_point.text();
 							sp = sp.replaceAll("%", "");
-							//system.out.println("story_point=" + sp);
+							System.out.println("story_point=" + sp);
 
-							Element visual_point = doc2.select("li.point04 span.grp_score").get(0);
+							Element visual_point = doc2.select("li.point04 span.grp_score").get(1);
 							String vp = visual_point.text();
 							vp = vp.replaceAll("%", "");
-							//system.out.println("visual_point=" + vp);
+							System.out.println("visual_point=" + vp);
 
-							Element ost_point = doc2.select("li.point05 span.grp_score").get(0);
+							Element ost_point = doc2.select("li.point05 span.grp_score").get(1);
 							String op = ost_point.text();
 							op = op.replaceAll("%", "");
-							//system.out.println("ost_point=" + op);
+							System.out.println("ost_point=" + op);
 
-							//system.out.println("==============================================");
+							System.out.println("==============================================");
 
-							NetizenEvaluationTrendVO vo = new NetizenEvaluationTrendVO();
+							AudienceEvaluationTrendVO vo = new AudienceEvaluationTrendVO();
 							vo.setMovie_id(movie_id);
-							//system.out.println("vo.movie_id=" + vo.getMovie_id());
+							System.out.println("vo.movie_id=" + vo.getMovie_id());
 							double ep = Double.parseDouble(evaluation_point.text());
 							vo.setEvaluation_point(ep);
 
@@ -192,8 +195,8 @@ public class NetizenEvaluationTrendManager {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//system.out.println("hello");
-		NetizenEvaluationTrendManager m = new NetizenEvaluationTrendManager();
-		List<NetizenEvaluationTrendVO> list = m.EvaluationData();
+		AudienceEvaluationTrendManager m = new AudienceEvaluationTrendManager();
+		List<AudienceEvaluationTrendVO> list = m.EvaluationData();
 		System.out.println("actual count : " + list.size());
 	}
 
