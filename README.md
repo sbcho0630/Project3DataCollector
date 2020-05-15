@@ -7,9 +7,11 @@
 male,female rating => double로 바꿈  
 production_point~ost_point => double로 바꿈  
 
+------5/14변경사항  
+package 나눔, evaluation -> netizen과 audience로 
+
 # 질문or추가할 것
-네티즌평점과 관람객평점 구분 어떻게 할지. (타입을 줘서?)  
-평점 자체가 없는 영화페이지가 너무많은데 일단 movie_id까지만 저장을 하는게 나을지?  
+
 
 # 크롤링 결과 
 mlink=https://movie.naver.com//movie/bi/mi/point.nhn?code=73430  
