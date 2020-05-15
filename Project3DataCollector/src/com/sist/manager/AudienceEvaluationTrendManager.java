@@ -10,8 +10,6 @@ import org.jsoup.select.Elements;
 
 import com.sist.dao.AudienceEvaluationTrendDAO;
 import com.sist.dao.AudienceEvaluationTrendVO;
-import com.sist.dao.NetizenEvaluationTrendDAO;
-import com.sist.dao.NetizenEvaluationTrendVO;
 
 public class AudienceEvaluationTrendManager {
 	public List<AudienceEvaluationTrendVO> EvaluationData() {
@@ -22,7 +20,7 @@ public class AudienceEvaluationTrendManager {
 		try {
 
 			AudienceEvaluationTrendDAO dao = new AudienceEvaluationTrendDAO();
-			for (int k = 16; k <= 16; k++) {
+			for (int k = 11; k <= 18; k++) {
 				
 				isSameMovieId = false;
 				
@@ -172,10 +170,9 @@ public class AudienceEvaluationTrendManager {
 							
 							
 							//EvaluationTrend 수집 끝
-							System.out.println("dao="+dao);
 							
 							list.add(vo);
-							 //dao.EvaluationTrendInsert(vo);
+							 //dao.AudienceEvaluationTrendInsert(vo);
 
 						} catch (Exception ex) {
 						}

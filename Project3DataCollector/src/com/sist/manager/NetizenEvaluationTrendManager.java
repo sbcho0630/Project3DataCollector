@@ -1,7 +1,6 @@
 package com.sist.manager;
 
 import java.util.*;
-import java.lang.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,7 +18,7 @@ public class NetizenEvaluationTrendManager {
 		try {
 
 			NetizenEvaluationTrendDAO dao = new NetizenEvaluationTrendDAO();
-			for (int k = 16; k <= 16; k++) {
+			for (int k = 11; k <= 18; k++) {
 				
 				isSameMovieId = false;
 				
@@ -172,7 +171,7 @@ public class NetizenEvaluationTrendManager {
 							System.out.println("dao="+dao);
 							
 							list.add(vo);
-							 //dao.EvaluationTrendInsert(vo);
+							 //dao.NetizenEvaluationTrendInsert(vo);
 
 						} catch (Exception ex) {
 						}
